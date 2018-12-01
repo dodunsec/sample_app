@@ -1,0 +1,10 @@
+branch-defaults:
+  master:
+    environment: SampleApp-env
+global:
+  application_name: sample_app
+  default_ec2_keyname: registry
+  default_platform: Ruby 2.5 (Puma)
+  default_region: us-east-1
+  profile: null
+  sc: git
