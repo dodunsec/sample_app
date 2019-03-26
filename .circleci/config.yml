@@ -2,6 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
+# sudo pip install 'six>=1.9' 'botocore==1.11.8' awsebcli==3.12.0
 version: 2
 jobs:
   build:
@@ -72,7 +73,7 @@ jobs:
             command: |
               sudo apt-get -y -qq update
               sudo apt-get install -y python-pip python-dev build-essential
-              sudo pip install 'six>=1.9' 'botocore==1.11.8' awsebcli==3.12.0
+              sudo pip install 'six>=1.9' 'botocore>=1.12.29,<1.13' awsebcli==3.14.13
         - run:
             name: Deploy to EB
             command: eb deploy SampleApp-env-1 --timeout 20
