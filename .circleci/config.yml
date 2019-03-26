@@ -72,7 +72,8 @@ jobs:
             command: |
               sudo apt-get -y -qq update
               sudo apt-get install -y python-pip python-dev build-essential
-              sudo pip install 'six>=1.9' 'botocore==1.11.8' awsebcli==3.12.0
+#              sudo pip install 'six>=1.9' 'botocore==1.11.8' awsebcli==3.12.0
+              sudo pip install 'six>=1.9' 'botocore>=1.12.29,<1.13' awsebcli==3.14.13
         - run:
             name: Deploy to EB
             command: eb deploy SampleApp-env-1 --timeout 20
