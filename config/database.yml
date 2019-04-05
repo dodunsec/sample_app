@@ -10,8 +10,14 @@ default: &default
   timeout: 5000
 
 development:
-  <<: *default
-  database: db/development.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: sample_app_development
+  pool: 5
+  username: saa_admin_development
+  password: <%= ENV.fetch("SAMPLE_APP_DATABASE_PASSWORD")%>
+#  socket: **/opt/local/var/run/mysql5/mysqld.sock**
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
