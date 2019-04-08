@@ -76,7 +76,7 @@ jobs:
               sudo pip install 'six>=1.9' 'botocore>=1.12.29,<1.13' awsebcli==3.14.13
         - run:
             name: Deploy to EB
-            command: eb deploy SampleApp-env-1 --timeout 20
+            command: eb deploy SampleApp-env --timeout 20
 
 workflows:
   version: 2
