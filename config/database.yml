@@ -26,12 +26,22 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+#production:
+#  adapter: mysql2
+#  encoding: utf8
+#  reconnect: false
+#  database: sample_app
+#  pool: 5
+#  username: sa_admin
+#  password: <%= ENV.fetch("SAMPLE_APP_DATABASE_PASSWORD")%>
+#  socket: **/opt/local/var/run/mysql5/mysqld.sock**
+
 production:
   adapter: mysql2
   encoding: utf8
-  reconnect: false
-  database: sample_app
-  pool: 5
-  username: sa_admin
-  password: <%= ENV.fetch("SAMPLE_APP_DATABASE_PASSWORD")%>
-#  socket: **/opt/local/var/run/mysql5/mysqld.sock**
+  database: <%= RDS_PROD_DB_NAME %>
+  username: <%= RDS_PROD_USERNAME %
+  password: <%= RDS_PROD_USERPASSWORD %>
+  host: <%= RDS_HOSTNAME %>
+  port: <%= RDS_PORT %>
+  
