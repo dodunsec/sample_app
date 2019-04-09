@@ -5,6 +5,6 @@ global:
   application_name: sample_app
   default_ec2_keyname: null
   default_platform: Ruby 2.5 (Puma)
-  default_region: us-east-1
+  default_region: us-east-2
   profile: null
   sc: git
