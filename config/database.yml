@@ -39,9 +39,9 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: <%= RDS_PROD_DB_NAME %>
-  username: <%= RDS_PROD_USERNAME %>
-  password: <%= RDS_PROD_USERPASSWORD %>
-  host: <%= RDS_HOSTNAME %>
-  port: <%= RDS_PORT %>
+  database: <%= ENV.fetch("RDS_PROD_DB_NAME")%>
+  username: <%= ENV.fetch("RDS_PROD_USERNAME")%>
+  password: <%= ENV.fetch("RDS_PROD_USERPASSWORD")%>
+  host: <%= ENV.fetch("RDS_HOSTNAME")%>
+  port: <%= ENV.fetch("RDS_PORT")%>
   
