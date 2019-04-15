@@ -5,43 +5,53 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-
-development:
-  adapter: mysql2
-  encoding: utf8
   reconnect: false
-  database: sample_app_development
-  pool: 5
-  username: sa_admin_dev
-  password: <%= ENV.fetch("SAMPLE_APP_DATABASE_PASSWORD")%>
-#  socket: **/opt/local/var/run/mysql5/mysqld.sock**
+  timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  adapter: sqlite3
   database: db/test.sqlite3
 
-#production:
-#  adapter: mysql2
-#  encoding: utf8
-#  reconnect: false
-#  database: sample_app
-#  pool: 5
-#  username: sa_admin
-#  password: <%= ENV.fetch("SAMPLE_APP_DATABASE_PASSWORD")%>
+development:
+  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  database: sample_app_development
+  username: sa_admin_dev
+  password: <%= ENV.fetch("SAMPLE_APP_DATABASE_PASSWORD") {:null} %>
 #  socket: **/opt/local/var/run/mysql5/mysqld.sock**
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  database: <%= ENV.fetch("RDS_PROD_DB_NAME")%>
-  username: <%= ENV.fetch("RDS_PROD_USERNAME")%>
-  password: <%= ENV.fetch("RDS_PROD_USERPASSWORD")%>
-  host: <%= ENV.fetch("RDS_HOSTNAME")%>
-  port: <%= ENV.fetch("RDS_PORT")%>
+  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV.fetch("RDS_PROD_DB_NAME") {:null} %>
+  username: <%= ENV.fetch("RDS_PROD_USERNAME") {:null} %>
+  password: <%= ENV.fetch("RDS_PROD_USERPASSWORD") {:null} %>
+  host: <%= ENV.fetch("RDS_HOSTNAME") {:null} %>
+  port: <%= ENV.fetch("RDS_PORT") {:null} %>
+  
+#development:
+#  adapter: mysql2
+#  encoding: utf8
+#  reconnect: false
+#  database: sample_app_development
+#  pool: 5
+#  username: sa_admin_dev
+#  password: <%= ENV.fetch("SAMPLE_APP_DATABASE_PASSWORD")%>
+#  socket: **/opt/local/var/run/mysql5/mysqld.sock**
+#
+#production:
+#  adapter: mysql2
+#  encoding: utf8
+#  database: <%= ENV.fetch("RDS_PROD_DB_NAME") {:null} %>
+#  username: <%= ENV.fetch("RDS_PROD_USERNAME") {:null} %>
+#  password: <%= ENV.fetch("RDS_PROD_USERPASSWORD") {:null} %>
+#  host: <%= ENV.fetch("RDS_HOSTNAME") {:null} %>
+#  port: <%= ENV.fetch("RDS_PORT") {:null} %>
   
